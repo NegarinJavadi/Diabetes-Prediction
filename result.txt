@@ -1,1 +1,112 @@
-pip install scikit-learn pandas matplotlib seaborn xgboost
+PROJECT  — Diabetes Prediction
+
+Loading Pima Indians Diabetes dataset...
+ Samples : 768
+ Features : 8
+
+Feature names:
+  ['Pregnancies', 'Glucose', 'BloodPressure', 'SkinThickness', 'Insulin', 'BMI', 'DiabetesPedigreeFunction', 'Age']
+
+Target distribution:
+ No Diabetes (0): 500
+ Diabetes (1): 268
+
+Replacing impossible zeros with NaN:
+  Glucose: 5 zeros → NaN
+  BloodPressure: 35 zeros → NaN
+  SkinThickness: 227 zeros → NaN
+  Insulin: 374 zeros → NaN
+  BMI: 11 zeros → NaN
+
+Feature Engineering
+ + bmi_category (0=Underweight 1=Normal 2=Overweight 3=Obese)
+ + glucose_risk (0=Normal 1=Prediabetes 2=Diabetes range)
+ + age_group (0=Young 1=Middle 2=Senior 3=Elderly)
+ + insulin_glucose
+ + bmi_glucose
+ + bp_age
+
+Final feature count: 14
+
+Random Forest AUC — original features  : 0.823
+Random Forest AUC — engineered features: 0.831
+Improvement: +0.008
+
+=======================================================
+ MODEL COMPARISON
+=======================================================
+
+Logistic Regression
+ CV Accuracy : 0.788 ± 0.018
+ Test Acc : 0.721
+ AUC-ROC : 0.832
+              precision    recall  f1-score   support
+
+ No Diabetes       0.76      0.83      0.79       100
+    Diabetes       0.62      0.52      0.57        54
+
+    accuracy                           0.72       154
+   macro avg       0.69      0.67      0.68       154
+weighted avg       0.71      0.72      0.71       154
+
+
+KNN
+ CV Accuracy : 0.762 ± 0.043
+ Test Acc : 0.766
+ AUC-ROC : 0.815
+              precision    recall  f1-score   support
+
+ No Diabetes       0.81      0.84      0.82       100
+    Diabetes       0.68      0.63      0.65        54
+
+    accuracy                           0.77       154
+   macro avg       0.74      0.73      0.74       154
+weighted avg       0.76      0.77      0.76       154
+
+
+SVM
+ CV Accuracy : 0.723 ± 0.051
+ Test Acc : 0.747
+ AUC-ROC : 0.798
+              precision    recall  f1-score   support
+
+ No Diabetes       0.80      0.82      0.81       100
+    Diabetes       0.65      0.61      0.63        54
+
+    accuracy                           0.75       154
+   macro avg       0.72      0.72      0.72       154
+weighted avg       0.74      0.75      0.75       154
+
+
+Random Forest
+ CV Accuracy : 0.761 ± 0.023
+ Test Acc : 0.753
+ AUC-ROC : 0.823
+              precision    recall  f1-score   support
+
+ No Diabetes       0.80      0.83      0.81       100
+    Diabetes       0.66      0.61      0.63        54
+
+    accuracy                           0.75       154
+   macro avg       0.73      0.72      0.72       154
+weighted avg       0.75      0.75      0.75       154
+
+
+XGBoost
+ CV Accuracy : 0.734 ± 0.028
+ Test Acc : 0.753
+ AUC-ROC : 0.809
+              precision    recall  f1-score   support
+
+ No Diabetes       0.80      0.83      0.81       100
+    Diabetes       0.66      0.61      0.63        54
+
+    accuracy                           0.75       154
+   macro avg       0.73      0.72      0.72       154
+weighted avg       0.75      0.75      0.75       154
+
+
+Best model by AUC: Logistic Regression (0.832)
+
+Plot saved as project_results.png
+Feature impact chart saved as project_feature_impact.png
